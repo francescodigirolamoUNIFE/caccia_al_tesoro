@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "caccia_al_tesoro"
+version = "0.0.1"
+dependencies = []
+requires-python = ">=3.10.12"
+authors = [
+  {name = "Francesco Federico Di Girolamo", email = "francesco.digirolamo@edu.unife.it"}
+]
+maintainers = [
+  {name = "Francesco Federico Di Girolamo", email = "francesco.digirolamo@edu.unife.it"}
+]
+description = "Gioco della Caccia al Tesoro"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["game"]
+
+[project.scripts]
+caccia_al_tesoro = "caccia_al_tesoro.__main__:main"
