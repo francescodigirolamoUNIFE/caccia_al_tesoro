@@ -19,7 +19,7 @@ class CacciaAlTesoro:
         self.posizione_tesoro = self._inizializza_gioco()
         self.tentativi = []
         self.trovato = False
-        logging.info(f"Tesoro nascosto in posizione: {self.posizione_tesoro}")
+        logging.debug(f"Tesoro nascosto in posizione: {self.posizione_tesoro}")
 
     def _inizializza_gioco(self) -> tuple[int, int]:
         """
