@@ -56,3 +56,4 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: francescodigirolamounife/caccia_al_tesoro:latest
+        
