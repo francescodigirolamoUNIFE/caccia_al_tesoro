@@ -18,7 +18,7 @@ python3 -m pip install .
 ## Utilizzo
 ```
  --help
-usage: caccia_al_tesoro [-h] --difficolta {facile,medio,difficile}
+usage: caccia_al_tesoro [-h] --difficolta {facile,medio,difficile} [--log LOG]
 
 Gioco della Caccia al Tesoro.
 
@@ -26,16 +26,20 @@ options:
   -h, --help            show this help message and exit
   --difficolta {facile,medio,difficile}
                         Difficoltà del gioco: facile, medio, o difficile
+  --log LOG             Livello di logging: DEBUG, INFO, WARNING, ERROR, CRITICAL
 ```
 
 ## Esempio
 ```
-python3 caccia_al_tesoro.py --difficolta facile
+caccia_al_tesoro --difficolta facile --log DEBUG
+
+2024-11-28 15:58:42,650 - DEBUG - Tesoro nascosto in posizione: (2, 3)
 
 Benvenuto alla Caccia al Tesoro!
 Il tesoro è nascosto in una griglia di 5x5.
-Prova a indovinare la posizione inserendo le coordinate (y, x).
+Prova a indovinare la posizione inserendo le coordinate (riga, colonna).
 
+2024-11-28 15:58:42,651 - DEBUG - Aggiornamento griglia con i tentativi.
 
 Griglia:
  .  .  .  .  . 
@@ -44,10 +48,12 @@ Griglia:
  .  .  .  .  . 
  .  .  .  .  . 
 
-Inserisci la coordinata y (1-5): 3
-Inserisci la coordinata x (1-5): 3
+Inserisci la coordinata riga (1-5): 3
+Inserisci la coordinata colonna (1-5): 3
+2024-11-28 15:59:05,844 - DEBUG - Tentativo corrente: (3, 3)
 Il tesoro è più a NORD.
-Il tesoro è più a OVEST.
+2024-11-28 15:59:05,844 - INFO - Il tesoro è più a NORD.
+2024-11-28 15:59:05,844 - DEBUG - Aggiornamento griglia con i tentativi.
 
 Griglia:
  .  .  .  .  . 
@@ -56,28 +62,20 @@ Griglia:
  .  .  .  .  . 
  .  .  .  .  . 
 
-Inserisci la coordinata y (1-5): 2
-Inserisci la coordinata x (1-5): 2
-Il tesoro è più a OVEST.
+Inserisci la coordinata riga (1-5): 2
+Inserisci la coordinata colonna (1-5): 3
+2024-11-28 15:59:19,463 - DEBUG - Tentativo corrente: (2, 3)
+2024-11-28 15:59:19,463 - INFO - Tesoro trovato in (2, 3) dopo 2 tentativi.
+
+Complimenti! Hai trovato il tesoro in (2,3)!
+2024-11-28 15:59:19,463 - DEBUG - Aggiornamento griglia con i tentativi.
 
 Griglia:
  .  .  .  .  . 
- .  X  .  .  . 
+ .  .  X  .  . 
  .  .  X  .  . 
  .  .  .  .  . 
  .  .  .  .  . 
 
-Inserisci la coordinata y (1-5): 2
-Inserisci la coordinata x (1-5): 1
-
-Complimenti! Hai trovato il tesoro in (2,1)!
-
-Griglia:
- .  .  .  .  . 
- X  X  .  .  . 
- .  .  X  .  . 
- .  .  .  .  . 
- .  .  .  .  . 
-
-Hai trovato il tesoro in 3 tentativi. Grazie per aver giocato!
+Hai trovato il tesoro in 2 tentativi. Grazie per aver giocato!
 ```
