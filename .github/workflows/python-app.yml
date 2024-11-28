@@ -1,0 +1,58 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: CICD
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.11.7
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.11.7"
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install --upgrade build
+        python -m pip install pytest hypothesis pylint
+        pip install .
+        
+    - name: Lint with pylint 
+      run: |
+        pylint caccia_al_tesoro/caccia_al_tesoro.py --exit-zero
+        
+    - name: Test with pytest
+      run: |
+        pytest
+
+    - name: Build app
+      run: |
+        python -m build
+
+    - name: Docker login
+      uses: docker/login-action@v3
+      with: 
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: Docker build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: francescodigirolamounife/caccia_al_tesoro:latest
